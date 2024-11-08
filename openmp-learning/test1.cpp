@@ -22,7 +22,7 @@ int main() {
     int sum = 0;
 
     #pragma omp parallel for // distributes loop iterations among threads
-    for (int i = 0; i < 100; i++) { // ensures that only one threads execs a block at a time
+    for (int i = 0; i < 100; i++) { // ensures that only one thread execs a block at a time
         #pragma omp critical
         {
             sum += i;
@@ -37,7 +37,7 @@ int main() {
     }
 
     sum = 0;
-    #pragma omp parallel for reduction(+:sum) // sombines res for all threads usign a reduction operator (+, -, *, etc.)
+    #pragma omp parallel for reduction(+:sum) // combines res for all threads usign a reduction operator (+, -, *, etc.)
     for (int i = 0; i < 100; i++) {
         sum += 1;
     }
